@@ -14,15 +14,18 @@ class Movies extends Component {
     title: "",
     actors: "",
     plot: "",
-    review: ""
+    review: "",
+    user: "test"
   };
 
   componentDidMount() {
-    this.loadMovies();
+    console.log(this.state.user)
+    this.loadMovies(this.state.user);
   }
 
-  loadMovies = () => {
-    API.getMovies()
+  loadMovies = (user) => {
+    console.log(user)
+    API.getMovies(user)
       .then(res =>
         this.setState({ movies: res.data, title: "", actors: "", review: "", plot: "" })
       )
@@ -46,6 +49,7 @@ class Movies extends Component {
     event.preventDefault();
     if (this.state.title) {
       var newReview = this.state.review;
+      var user = this.state.user;
       movieAPI.movieSearch(this.state.title)
         .then(function (res) {
           console.log(res)
@@ -54,12 +58,13 @@ class Movies extends Component {
             actors: res.data.Actors,
             plot: res.data.Plot,
             review: newReview ,
-            imageURL: res.data.Poster           
+            imageURL: res.data.Poster,
+            users: user            
           }
           console.log(newMovieData);
           API.saveMovie(newMovieData);                  
-        })
-        .then(res => this.loadMovies())
+        })       
+        .then(res => this.loadMovies(this.state.user))
         .catch(err => console.log(err));
     }
   };

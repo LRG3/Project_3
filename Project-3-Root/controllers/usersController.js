@@ -9,6 +9,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  findOne: function(req, res){
+    db.User
+      .find({ username: req.params.username, password: req.params.password})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));          
+  },
   findById: function(req, res) {
     db.User
       .findById(req.params.id)
@@ -18,8 +25,8 @@ module.exports = {
   create: function(req, res) {
     db.User
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .then(dbModel => console.log(dbModel))
+      .catch(err => console.log(err));
   },
   update: function(req, res) {
     db.User
