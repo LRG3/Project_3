@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets all movies
-  getMovies: function() {
-    return axios.get("/api/movies");
+  getMovies: function(user) {
+    return axios.get("/api/movies/" + user);
   },
   // Gets the movie with the given id
   getMovie: function(id) {
@@ -17,4 +17,10 @@ export default {
   saveMovie: function(movieData) {
     return axios.post("/api/movies", movieData);
   },
+  saveUser: function(user) {
+    return axios.post("/api/user", user);
+  },
+  verifyCredentials: function(username, password){
+    return axios.get("api/user/" + username + "/" + password)
+  }
 };
