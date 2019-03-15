@@ -6,6 +6,7 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Friends from "./pages/Friends";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           {/* <Route exact path="/" component={Movies} /> */}
           <Route exact path="/movies" component={Movies} />
           <Route exact path="/movies/:id" component={Detail} />
+          <Route exact path="/friends" component={Friends} />
           <Route component={NoMatch} />
         </Switch>
       </div>
