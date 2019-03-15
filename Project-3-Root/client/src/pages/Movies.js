@@ -92,7 +92,7 @@ class Movies extends Component {
                 placeholder="Enter your review (optional)"
               />
                 
-
+                <Link to="/friends">MovieHub! Friends</Link>
 
               <FormBtn
                 disabled={!(this.state.title)}
