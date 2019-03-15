@@ -4,12 +4,21 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
-  email: String,
+  firstname: { type: String, required: false },
+  lastname: { type: String, required: false },
+  city: { type: String, required: false },
+  state: { type: String, required: false },
+  age: { type: String, required: false },
+  gender: { type: String, required: false },
+  occupation: { type: String, required: false },
+  facebook: { type: String, required: false },
+  twitter: { type: String, required: false },
+  instagram: { type: String, required: false },  
   snapchat: {type: String, required: false},
-  twitter: {type: String, required: false},
+  youtube: {type: String, required: false},
   date: { type: Date, default: Date.now }
 });
 
-const Movie = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

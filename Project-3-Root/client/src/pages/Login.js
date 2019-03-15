@@ -3,6 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import { Input, FormBtn } from "../components/Form";
 import { Link } from "react-router-dom";
+import API from "../utils/API";
 
 class Login extends Component {
     state = {
@@ -21,9 +22,22 @@ class Login extends Component {
         });
     };
 
-    signIn() {
-        
-    }
+    signIn = event => {
+        event.preventDefault();
+        if (this.state.username && this.state.password) {          
+          API.verifyCredentials(this.state.username, this.state.password)
+            .then(function (res) {               
+              if (res.data.length === 0){
+                  alert("Invalid Username or Password. Try again!")
+              } else {
+                  alert("CREDENTIALS VERIFIED")
+                  //NEED TO CREATE LOGIC TO SEND USER TO THE MOVIES PAGE AND KEEP THE USERNAME AS THE CURRENT STATE 
+              }                             
+            })           
+            .catch(err => console.log(err));
+        }
+      };
+              
 
     render() {
         return (
@@ -49,8 +63,8 @@ class Login extends Component {
                         <FormBtn
                             disabled={!(this.state.username && this.state.password)}
                             onClick={this.signIn}
-                        >
-                            <Link to="/movies">Sign In</Link>
+                        >Sign In
+                            {/* <Link to="/movies">Sign In</Link> */}
                         </FormBtn>                                                  
                         
                         <Link to="/signUp">New User?</Link>
