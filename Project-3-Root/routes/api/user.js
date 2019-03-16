@@ -6,7 +6,14 @@ router.route("/")
   .get(usersController.findAll)
   .post(usersController.create);
 
-// Matches with "/api/user/:id"
+// // Matches with "/api/user/:id"
+// router
+//   .route("/:id")
+//   // .get(usersController.findOne)
+//   .get("/movies", usersController.findById)
+//   .put(usersController.update)
+//   .delete(usersController.remove);
+
 router
   .route("/:username/:password")
   .get(usersController.findOne)

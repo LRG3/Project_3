@@ -30,7 +30,7 @@ class Login extends Component {
               if (res.data.length === 0){
                   alert("Invalid Username or Password. Try again!")
               } else {
-                  alert("CREDENTIALS VERIFIED")
+                  alert("CREDENTIALS VERIFIED ... THIS IS WHERE WE NEED TO MAKE IT LOAD NEW PAGE")
                   //NEED TO CREATE LOGIC TO SEND USER TO THE MOVIES PAGE AND KEEP THE USERNAME AS THE CURRENT STATE 
               }                             
             })           

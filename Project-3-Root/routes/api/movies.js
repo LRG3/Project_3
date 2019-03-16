@@ -7,9 +7,9 @@ router.route("/")
   .post(moviesController.create);
 
   //finds movies the user has saved
-router.route("/:user")
-  .get(moviesController.findByUser)
-  .post(moviesController.create);
+// router.route("/:user")
+//   .get(moviesController.findByUser)
+//   .post(moviesController.create);
 // Matches with "/api/movies/:id"
 router
   .route("/:id")

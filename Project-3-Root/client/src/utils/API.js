@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets all movies
-  getMovies: function(user) {
-    return axios.get("/api/movies/" + user);
+  getMovies: function() {
+    return axios.get("/api/movies/");
   },
   // Gets the movie with the given id
   getMovie: function(id) {
@@ -24,3 +24,4 @@ export default {
     return axios.get("api/user/" + username + "/" + password)
   }
 };
+// /api/user/:id/movies/

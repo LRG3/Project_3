@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+// const { ObjectId: ObjectIdType } = mongoose.Schema.Types
 
 const userSchema = new Schema({
   username: { type: String, required: true },
@@ -16,8 +17,14 @@ const userSchema = new Schema({
   instagram: { type: String, required: false },  
   snapchat: {type: String, required: false},
   youtube: {type: String, required: false},
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  // movies: [{ ref: 'Movie', type: ObjectIdType }],
 });
+
+// User.find({}).populate('movies').exec()
+
+// User.findOneAndUpdate({ _id: userId }, { $addToSet: { movies: movie._id } })
+// User.findOneAndUpdate({ _id: userId }, { $pull: { movies: movie._id } })
 
 const User = mongoose.model("User", userSchema);
 
