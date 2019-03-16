@@ -7,6 +7,7 @@ import API from "../utils/API";
 
 class SignUp extends Component {
   state = {
+
     username: "",
     password: "",
     firstname: "",
@@ -171,5 +172,6 @@ render() {
 }
 
 };
+
 
 export default SignUp;
