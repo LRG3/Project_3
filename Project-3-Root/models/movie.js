@@ -7,7 +7,7 @@ const movieSchema = new Schema({
   plot: String,
   review: {type: String, required: false},
   imageURL: {type: String, required: false},
-  users: {type: Array, required: false},
+  users: {type: Array, required: false},  
   date: { type: Date, default: Date.now }
 });
 

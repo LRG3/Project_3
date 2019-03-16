@@ -19,13 +19,13 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.user)
-    this.loadMovies(this.state.user);
+    
+    this.loadMovies();
   }
 
-  loadMovies = (user) => {
-    console.log(user)
-    API.getMovies(user)
+  loadMovies = () => {
+    // console.log(user)
+    API.getMovies()
       .then(res =>
         this.setState({ movies: res.data, title: "", actors: "", review: "", plot: "" })
       )
@@ -62,9 +62,9 @@ class Movies extends Component {
             users: user            
           }
           console.log(newMovieData);
-          API.saveMovie(newMovieData);                  
+          return API.saveMovie(newMovieData);                  
         })       
-        .then(res => this.loadMovies(this.state.user))
+        .then(res => this.loadMovies())
         .catch(err => console.log(err));
     }
   };

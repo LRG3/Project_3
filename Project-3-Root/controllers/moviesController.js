@@ -19,6 +19,7 @@ module.exports = {
       .catch(err => console.log(err));
   },
   findById: function (req, res) {
+    
     db.Movie
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
