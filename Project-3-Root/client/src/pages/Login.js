@@ -3,18 +3,29 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import { Input, FormBtn } from "../components/Form";
 import { Link } from "react-router-dom";
-import API from "../utils/API";
+
 
 class Login extends Component {
-    state = {
-        username: [],
-        password: ""
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            username: "",
+            password: ""
+        };
+    }
+
 
     componentDidMount() {
         console.log("mounted");
     }
 
+    handleLogin = event => {
+        const { username, password } = this.state
+        this.props.handleSignIn(username, password, event, () => {
+            this.props.history.replace("/movies")
+        })
+    }
+    
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -22,24 +33,8 @@ class Login extends Component {
         });
     };
 
-    signIn = event => {
-        event.preventDefault();
-        if (this.state.username && this.state.password) {          
-          API.verifyCredentials(this.state.username, this.state.password)
-            .then(function (res) {               
-              if (res.data.length === 0){
-                  alert("Invalid Username or Password. Try again!")
-              } else {
-                  alert("CREDENTIALS VERIFIED ... THIS IS WHERE WE NEED TO MAKE IT LOAD NEW PAGE")
-                  //NEED TO CREATE LOGIC TO SEND USER TO THE MOVIES PAGE AND KEEP THE USERNAME AS THE CURRENT STATE 
-              }                             
-            })           
-            .catch(err => console.log(err));
-        }
-      };
-              
-
     render() {
+
         return (
             <Container fluid>
                 <Row>
@@ -62,14 +57,14 @@ class Login extends Component {
                         />
                         <FormBtn
                             disabled={!(this.state.username && this.state.password)}
-                            onClick={this.signIn}
+                            onClick={this.handleLogin}
                         >Sign In
                             {/* <Link to="/movies">Sign In</Link> */}
-                        </FormBtn>                                                  
-                        
+                        </FormBtn>
+
                         <Link to="/signUp">New User?</Link>
-                           
-                        
+
+
                     </Col>
                 </Row>
             </Container>

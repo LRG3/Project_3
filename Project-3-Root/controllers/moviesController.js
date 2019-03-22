@@ -3,8 +3,9 @@ const db = require("../models");
 // Defining methods for the moviesController
 module.exports = {
   findAll: function (req, res) {
+    var user = req.params.user    
     db.Movie
-      .find(req.query)
+      .find({users: user})
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

@@ -9,23 +9,26 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
 class Movies extends Component {
-  state = {
-    movies: [],
-    title: "",
-    actors: "",
-    plot: "",
-    review: "",
-    user: "test"
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      movies: [],
+      title: "",
+      actors: "",
+      plot: "",
+      review: "",
+      user: ""
+    };
+  }
 
   componentDidMount() {
-    
-    this.loadMovies();
+    this.loadMovies(); 
   }
 
   loadMovies = () => {
-    // console.log(user)
-    API.getMovies()
+    const { user } = this.props
+    console.log(user[0].username)
+    API.getMovies(user[0].username)
       .then(res =>
         this.setState({ movies: res.data, title: "", actors: "", review: "", plot: "" })
       )
@@ -46,25 +49,25 @@ class Movies extends Component {
   };
 
   movieSearch = event => {
+    const { user } = this.props
     event.preventDefault();
     if (this.state.title) {
-      var newReview = this.state.review;
-      var user = this.state.user;
+      var newReview = this.state.review;      
       movieAPI.movieSearch(this.state.title)
-        .then(function (res) {
+        .then((res) => {
           console.log(res)
           var newMovieData = {
             title: res.data.Title,
             actors: res.data.Actors,
             plot: res.data.Plot,
-            review: newReview ,
+            review: newReview,
             imageURL: res.data.Poster,
-            users: user            
+            users: user[0].username
           }
           console.log(newMovieData);
-          return API.saveMovie(newMovieData);                  
-        })       
-        .then(res => this.loadMovies())
+          return API.saveMovie(newMovieData);
+        })
+        .then(() => {return this.loadMovies()})
         .catch(err => console.log(err));
     }
   };
@@ -85,14 +88,14 @@ class Movies extends Component {
                 placeholder="Title (required)"
               />
 
-              <TextArea 
+              <TextArea
                 value={this.state.review}
                 onChange={this.handleInputChange}
                 name="review"
                 placeholder="Enter your review (optional)"
               />
-                
-                <Link to="/friends">MovieHub! Friends</Link>
+
+
 
               <FormBtn
                 disabled={!(this.state.title)}
@@ -110,7 +113,7 @@ class Movies extends Component {
               <List>
                 {this.state.movies.map(movie => (
                   <ListItem key={movie._id}>
-                    <Link to={"/movies/" + movie._id}>
+                    <Link to={"/movieDetail/" + movie._id}>
                       <strong>
                         {movie.title} with {movie.actors}
                       </strong>

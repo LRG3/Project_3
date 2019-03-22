@@ -1,10 +1,22 @@
 import React from "react";
 
+const navStyle = {
+  display: 'flex', 
+  justifyContent: "space-between"
+};
+
+const aStyle = {  
+  fontSize: '15px' 
+};
+
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav style={navStyle} className="navbar navbar-expand-lg navbar-dark bg-primary">
       <a className="navbar-brand" href="/">
         Movie Hub
+      </a>
+      <a style={aStyle} className="navbar-brand" href="#" >
+        Welcome - USERNAME HERE 
       </a>
     </nav>
   );
