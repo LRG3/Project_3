@@ -53,7 +53,7 @@ class Detail extends Component {
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Home</Link>
+            <Link to="/movies">← MovieHub! Search</Link>
           </Col>
         </Row>
       </Container>

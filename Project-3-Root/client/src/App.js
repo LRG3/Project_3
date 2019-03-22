@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import API from "./utils/API";
+import Friends from "./pages/Friends";
 
 class App extends Component {
    constructor(props) {
@@ -46,6 +47,7 @@ class App extends Component {
             <Route exact path="/signUp" component={SignUp} />          
             <Route exact path="/movies/" render = {(props) => <Movies user={user}{...props}/>} />
             <Route exact path="/movieDetail/:id" component={Detail} />
+            <Route exact path="/friends" component={Friends} />
             <Route component={NoMatch} />
           </Switch>
         </div>
