@@ -16,7 +16,7 @@ function Nav() {
         Movie Hub
       </a>
       <a style={aStyle} className="navbar-brand" href="#" >
-        Welcome - USERNAME HERE 
+        Welcome
       </a>
     </nav>
   );

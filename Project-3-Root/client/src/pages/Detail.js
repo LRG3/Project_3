@@ -11,7 +11,7 @@ class Detail extends Component {
 
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  componentDidMount() {    
+  componentDidMount() {
     API.getMovie(this.props.match.params.id)
       .then(res => this.setState({ movie: res.data }))
       .catch(err => console.log(err));
@@ -23,31 +23,35 @@ class Detail extends Component {
       <Container fluid>
         <Row>
           <Col size="md-12">
-            <Jumbotron>
+            <Jumbotron >
               <h1>
                 {this.state.movie.title} with {this.state.movie.actors}
               </h1>
-              <img alt={this.state.movie.title} className="img-fluid" src={this.state.movie.imageURL}  />
             </Jumbotron>
           </Col>
         </Row>
         <Row>
+          <img style={{ height: 300, marginLeft: 20, marginBottom: 30, borderWidth: 1, borderRadius: 10 }} alt={this.state.movie.title} className="img-fluid" src={this.state.movie.imageURL} />
           <Col size="md-10 md-offset-1">
             <article>
               <h1>Plot</h1>
               <p>
                 {this.state.movie.plot}
               </p>
+              <h1>Your Review</h1>
+              <p>
+                {this.state.movie.review}
+              </p>
             </article>
           </Col>
         </Row>
         <Row>
           <Col size="md-10 md-offset-1">
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-10 md-offset-1">
             <article>
-              <h1>Review</h1>
-              <p>
-                {this.state.movie.review}
-              </p>
             </article>
           </Col>
         </Row>
